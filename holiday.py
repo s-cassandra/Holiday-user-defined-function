@@ -54,8 +54,17 @@ def holiday_cost(hotel_cost, plane_cost,car_rental):
     total_cost = hotel_cost(num_nights, city_flight) + plane_cost(city_flight) + car_rental(rental_days, city_flight)
     return total_cost
 
-#User input
-city_flight = input("Enter the city you will be flying to (Port of Spain, Venice, Tokyo, Melbourne): ").upper()
+# User input
+
+# Input validation
+valid_cities = ["PORT OF SPAIN", "VENICE", "TOKYO", "MELBOURNE"] # creating a list of cities that the user must pick in order to continue with further functions
+while True:
+    city_flight = input("Enter the city you will be flying to (Port of Spain, Venice, Tokyo, Melbourne): ").upper()
+    if city_flight in valid_cities:
+        break
+    else:
+        print("Invalid option. Please choose a city from the provided list.")
+    
 num_nights = int(input("Enter the number of nights you will be staying at the hotel: "))
 rental_days = int(input("Enter the number of days you will be hiring a car for: "))
 
