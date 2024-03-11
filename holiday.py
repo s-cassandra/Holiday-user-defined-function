@@ -19,32 +19,39 @@
     - Turn num_nights and rental_days input into integers
 
 '''
-def hotel_cost(num_nights):
-    price_per_night = 85
+# Dictionary used instead for a more concise code
+def plane_cost(city_flight):
+    city_prices = {
+        "PORT OF SPAIN": 1000,
+        "VENICE": 400,
+        "TOKYO": 800,
+        "MELBOURNE": 550
+    }
+    return city_prices.get(city_flight, 0) # If the city name is not found in the dictionary, 'get' returns a default value 0 as a precaution
+
+def hotel_cost(num_nights, city_flight):
+    city_prices = {
+        "PORT OF SPAIN": 85,
+        "VENICE": 100,
+        "TOKYO": 120,
+        "MELBOURNE": 90
+    }
+    price_per_night = city_prices.get(city_flight.upper(), 0)
     return num_nights * price_per_night
 
-def plane_cost(city_flight):
-    if city_flight == "PORT OF SPAIN":
-        return 1000
-    
-    elif city_flight == "VENICE":
-        return 400
-    
-    elif city_flight == "TOKYO":
-        return 800
-
-    elif city_flight == "MELBOURNE":
-        return 550
-    
-    else:
-        return 0
-
-def car_rental(rental_days):
-    daily_rental_cost = 40
+def car_rental(rental_days, city_flight):
+    city_prices = {
+        "PORT OF SPAIN": 40,
+        "VENICE": 50,
+        "TOKYO": 60,
+        "MELBOURNE": 45
+    }
+    daily_rental_cost = city_prices.get(city_flight.upper(), 0)
     return rental_days * daily_rental_cost
 
+
 def holiday_cost(hotel_cost, plane_cost,car_rental):
-    total_cost = hotel_cost(num_nights) + plane_cost(city_flight) + car_rental(rental_days)
+    total_cost = hotel_cost(num_nights, city_flight) + plane_cost(city_flight) + car_rental(rental_days, city_flight)
     return total_cost
 
 #User input
